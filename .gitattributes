@@ -1,0 +1,12 @@
+# Text files
+**/gradlew text eol=lf
+*.bat text eol=crlf
+*.java text eol=lf
+*.gradle text eol=lf
+*.json text eol=lf
+**/.cache/cache text eol=lf
+
+# Binaries
+*.jar binary
+*.png binary
+*.gif binary

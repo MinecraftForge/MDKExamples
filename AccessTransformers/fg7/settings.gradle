@@ -1,0 +1,18 @@
+pluginManagement {
+    if (new File("${settingsDir}/../../../ForgeGradle/settings.gradle").exists())
+        includeBuild "${settingsDir}/../../../ForgeGradle/"
+    
+    if (new File("${settingsDir}/../../../AccesssTransformers/at-gradle/settings.gradle").exists())
+        includeBuild "${settingsDir}/../../../AccessTransformers/at-gradle/"
+
+    repositories {
+        gradlePluginPortal()
+        maven { url = 'https://maven.minecraftforge.net' }
+    }
+}
+
+plugins {
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
+}
+
+rootProject.name = 'mdkexamples-accesstransformers-fg7'
