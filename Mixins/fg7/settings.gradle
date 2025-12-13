@@ -1,0 +1,15 @@
+pluginManagement {
+    if (new File("${settingsDir}/../../../ForgeGradle/settings.gradle").exists())
+        includeBuild "${settingsDir}/../../../ForgeGradle/"
+
+    repositories {
+        gradlePluginPortal()
+        maven { url = 'https://maven.minecraftforge.net' }
+    }
+}
+
+plugins {
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
+}
+
+rootProject.name = 'mdkexamples-mixins-fg7'

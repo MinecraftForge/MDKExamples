@@ -1,0 +1,6 @@
+{
+	"package": "net.minecraftforge.example.mixins",
+	"mixins": [
+		"ExampleMixin"
+	]
+}

@@ -1,0 +1,2 @@
+#!/bin/sh
+../../gradle/fg7/gradlew "$@"
