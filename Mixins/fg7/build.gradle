@@ -3,7 +3,7 @@ plugins {
     id 'idea'
     id 'eclipse'
     id 'maven-publish'
-    id 'net.minecraftforge.gradle' version '7.0.0-beta.53'
+    id 'net.minecraftforge.gradle' version '7.0.0-beta.55'
     id 'net.minecraftforge.jarjar' version '0.2.3'
 }
 
@@ -38,7 +38,7 @@ dependencies {
     implementation minecraft.dependency("net.minecraftforge:forge:$minecraft_version-$forge_version")
     annotationProcessor 'net.minecraftforge:eventbus-validator:7.0-beta.10'
 }
-
+println project.configurations.compileClasspath.find { it.name.startsWith("forge-") }
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
 }
@@ -47,5 +47,17 @@ tasks.named('jar', Jar) {
     manifest {
         // Add our config to the manifest of our jar to have Mixin detect us at runtime.
         attributes['MixinConfigs'] = "${mod_id}.mixins.json"
+    }
+}
+
+/*
+tasks.find{ it.name.startsWith('syncMavenizerFor') }.each {
+    it.
+}
+*/
+
+fgtools {
+    configure('mavenizer') {
+        classpath = configurations.detachedConfiguration(dependencies.create('net.minecraftforge:minecraft-mavenizer:0.4.19'))
     }
 }

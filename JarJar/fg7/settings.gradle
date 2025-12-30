@@ -1,7 +1,11 @@
 pluginManagement {
+    // This includes ForgeGradle if the repo exists, to make debugging easier.
+    // It can be safely deleted if you are not developing ForgeGradle itself.
     if (new File("${settingsDir}/../../../ForgeGradle/settings.gradle").exists())
         includeBuild "${settingsDir}/../../../ForgeGradle/"
     
+    // This includes AccessTransformer if the repo exists, to make debugging easier.
+    // It can be safely deleted if you are not developing AccessTransformer itself.
     if (new File("${settingsDir}/../../../AccesssTransformers/at-gradle/settings.gradle").exists())
         includeBuild "${settingsDir}/../../../AccessTransformers/at-gradle/"
 
