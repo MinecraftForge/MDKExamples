@@ -13,6 +13,14 @@ pluginManagement {
         gradlePluginPortal()
         maven { url = 'https://maven.minecraftforge.net' }
     }
+
+    // This allows us to use an environment variable to set the FG7 version for internal testing
+    // It can be safely deleted IF you manually specify the version in build.gradle
+    resolutionStrategy.eachPlugin {
+        if (requested.id.id == 'net.minecraftforge.gradle') {
+            useVersion(System.getenv('MDK_EXAMPLE_FG7') ?: '7.0.0-rc.2')
+        }
+    }
 }
 
 plugins {

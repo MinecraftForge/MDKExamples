@@ -3,7 +3,7 @@ plugins {
     id 'idea'
     id 'eclipse'
     id 'maven-publish'
-    // AccessTransformers needs to be applied before FG if you want to use the minecraft block config options
+    id 'net.minecraftforge.gradle' //version '7.0.0-rc.2' // see settings.gradle
 }
 
 version = '1.0'
@@ -20,7 +20,7 @@ minecraft {
      * It also enables some error messages when the file can not be found, to help users
      * who are using the most default case.
      */
-    accessTransformers = true
+    accessTransformer = true
 
     mappings channel: 'official', version: '1.21.11'
     runs {
@@ -42,19 +42,6 @@ dependencies {
     // This will automatically have the transformer applied because we used minecraft.accessTransformers
     implementation minecraft.dependency("net.minecraftforge:forge:$minecraft_version-$forge_version")
 
-    /*
-     * If for some reason you do not wish to have the access transformer config in your sourcesets with the
-     * default name. You can specify the transformer on specific dependencies directly.
-     * Also note this allows you to transform any dependency, and have your config named anyting.
-     * However, Forge only looks for META-INF/accesstransformers.cfg at runtime so you'll need to
-     * make sure the file is named properly in your released jar. And that the targeted library is
-     * loaded in the transformed layer.
-     */
-    implementation('net.minecraftforge:roimfs:1.0.0') {
-        accessTransformers.configure(it) {
-            config = project.file('access-changes.cfg')
-        }
-    }
     annotationProcessor 'net.minecraftforge:eventbus-validator:7.0-beta.10'
 }
 
