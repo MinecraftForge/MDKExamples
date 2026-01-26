@@ -4,8 +4,6 @@ plugins {
     id 'eclipse'
     id 'maven-publish'
     // AccessTransformers needs to be applied before FG if you want to use the minecraft block config options
-    id 'net.minecraftforge.accesstransformers' version '5.0.2'
-    id 'net.minecraftforge.gradle' version '7.0.0-beta.53'
 }
 
 version = '1.0'
@@ -43,7 +41,7 @@ repositories {
 dependencies {
     // This will automatically have the transformer applied because we used minecraft.accessTransformers
     implementation minecraft.dependency("net.minecraftforge:forge:$minecraft_version-$forge_version")
-    
+
     /*
      * If for some reason you do not wish to have the access transformer config in your sourcesets with the
      * default name. You can specify the transformer on specific dependencies directly.
