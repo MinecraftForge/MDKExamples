@@ -3,7 +3,7 @@ plugins {
     id 'idea'
     id 'eclipse'
     id 'maven-publish'
-    id 'net.minecraftforge.gradle' //version '7.0.0-rc.2' // see settings.gradle
+    id 'net.minecraftforge.gradle' version '7.0.0-rc.5'
 }
 
 version = '1.0'

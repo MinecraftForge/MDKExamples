@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+}
+
+version = '1.0'
+group = 'net.minecraftforge'
+
+tasks.named('buildEnvironment') {
+    subprojects.each { sub -> dependsOn(":${sub.name}:buildEnvironment") }
+}
+
+tasks.register('updateBuilds') {
+    subprojects.each { sub ->
+        def lines = sub.file('build.gradle').readLines()
+        lines = lines.collect { line ->
+            for (def plugin : gradle.ext.pluginVersions) {
+                // Yes this is hacky string match, but we just need to keep the structure sane
+                if (line.contains("    id '${plugin.id}' version '"))
+                    return "    id '${plugin.id}' version '${plugin.version}'"
+                return line
+            }
+        }
+        sub.file('build.gradle').text = lines.join('\n') + '\n' // New line at the end
+    }
+}
+
+tasks.register('updateGradle') {
+    subprojects.each { sub ->
+        copy {
+            from file('gradlew')
+            into sub.projectDir
+        }
+        copy {
+            from file('gradlew.bat')
+            into sub.projectDir
+        }
+        copy {
+            from file('gradle')
+            into sub.file('gradle')
+        }
+    }
+}
+
+tasks.named('wrapper') {
+    finalizedBy('updateGradle')
+}

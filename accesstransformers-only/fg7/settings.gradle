@@ -1,25 +1,7 @@
 pluginManagement {
-    // This includes ForgeGradle if the repo exists, to make debugging easier.
-    // It can be safely deleted if you are not developing ForgeGradle itself.
-    if (new File("${settingsDir}/../../../ForgeGradle/settings.gradle").exists())
-        includeBuild "${settingsDir}/../../../ForgeGradle/"
-    
-    // This includes AccessTransformer if the repo exists, to make debugging easier.
-    // It can be safely deleted if you are not developing AccessTransformer itself.
-    if (new File("${settingsDir}/../../../AccessTransformers/at-gradle/settings.gradle").exists())
-        includeBuild "${settingsDir}/../../../AccessTransformers/at-gradle/"
-
     repositories {
         gradlePluginPortal()
         maven { url = 'https://maven.minecraftforge.net' }
-    }
-
-    // This allows us to use an environment variable to set the FG7 version for internal testing
-    // It can be safely deleted IF you manually specify the version in build.gradle
-    resolutionStrategy.eachPlugin {
-        if (requested.id.id == 'net.minecraftforge.gradle') {
-            useVersion(System.getenv('MDK_EXAMPLE_FG7') ?: '7.0.0-rc.2')
-        }
     }
 }
 

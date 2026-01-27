@@ -1,0 +1,50 @@
+pluginManagement {
+    // This includes various Forge projects if their repo exists relative to the 'MDKExamples' repo root.
+    // This is done to make debugging those projects easier.
+    def root = new File("${settingsDir}/../../../").canonicalFile
+    gradle.ext.pluginVersions = [
+        [version: '7.0.0-rc.5', id: 'net.minecraftforge.gradle', paths: ['ForgeGradle', 'ForgeGradle7']],
+        [version: '5.0.3', id: 'net.minecraftforge.accesstransformers', paths: ['AccessTransformers/at-gradle']],
+        [version: '0.2.3', id: 'net.minecraftforge.jarjar', paths: ['JarJar/jarjar-gradle']],
+    ]
+    
+    gradle.ext.pluginVersions.each { candidate ->
+        def dir = candidate.paths.collect{ new File(root, it) }.find{ it.exists() }
+        if (INCLUDE_BUILD == 'true' && dir != null) {
+            logger.lifecycle("Including Build for ${candidate.id} at ${dir.absolutePath}")
+            includeBuild dir.absolutePath
+        } else {
+            resolutionStrategy.eachPlugin {
+                if (requested.id.id == candidate.id) {
+                    logger.lifecycle("Forcing `${candidate.id}` to `${candidate.version}`")
+                    useVersion(candidate.version)
+                }
+            }
+        }
+    }
+    
+    repositories {
+        gradlePluginPortal()
+        maven { url = 'https://maven.minecraftforge.net' }
+        mavenLocal()
+    }
+}
+
+plugins {
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
+}
+
+rootProject.name = 'mdkexamples'
+
+def children = [
+    [name: 'accesstransformers-only', path: 'accesstransformers-only/fg7'],
+    [name: 'jarjar-only', path: 'jarjar-only/fg7'],
+    [name: 'traditional-mdk', path: 'traditional-mdk/fg7'],
+    [name: 'mixins-only', path: 'mixins-only/fg7'],
+]
+
+for (def child : children) {
+    include(child.name)
+    project(":${child.name}").projectDir = file("../../${child.path}")
+}
+  
