@@ -40,6 +40,8 @@ def children = [
     [name: 'accesstransformers-only', path: 'accesstransformers-only/fg7'],
     [name: 'jarjar-only', path: 'jarjar-only/fg7'],
     [name: 'traditional-mdk', path: 'traditional-mdk/fg7'],
+    // TODO [MDKExamples] Add tests for Kotlin examples
+    //[name: 'traditional-mdk', path: 'traditional-mdk/fg7-kotlin'],
     [name: 'mixins-only', path: 'mixins-only/fg7'],
 ]
 
