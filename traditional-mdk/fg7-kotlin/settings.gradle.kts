@@ -1,12 +1,3 @@
-// NOTE: When ForgeGradle 7 is stabilized, it will be uploaded to the Gradle Plugin Portal.
-//       This block will be removed when that happens.
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        maven { url = uri("https://maven.minecraftforge.net") }
-    }
-}
-
 plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
