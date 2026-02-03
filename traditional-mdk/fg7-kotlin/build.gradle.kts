@@ -6,7 +6,7 @@ plugins {
     id("idea")
     id("eclipse")
     id("maven-publish")
-    id("net.minecraftforge.gradle") version "[7.0,8.0)"
+    id("net.minecraftforge.gradle") version "[7.0.2,8.0)"
     id("net.minecraftforge.jarjar") version "0.2.3"
 }
 
@@ -89,7 +89,7 @@ jarJar.register() {
 }
 
 repositories {
-    maven(minecraft.mavenizer)
+    minecraft.mavenizer(this)
     maven(fg.forgeMaven)
     maven(fg.minecraftLibsMaven)
     exclusiveContent {
