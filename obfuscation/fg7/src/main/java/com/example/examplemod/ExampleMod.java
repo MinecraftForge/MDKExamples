@@ -11,6 +11,6 @@ public final class ExampleMod {
     private static final Logger LOGGER = LogUtils.getLogger();
 
     public ExampleMod(FMLJavaModLoadingContext context) {
-        LOGGER.info("If this shows up we can reference obfusication code: " + Blocks.DIRT.getDescriptionId());
+        LOGGER.info("If this shows up we can reference obfuscated code: " + Blocks.DIRT.getDescriptionId());
     }
 }

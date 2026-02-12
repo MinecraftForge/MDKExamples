@@ -166,7 +166,7 @@ tasks.named('jar', Jar) {
 // Example configuration to allow publishing using the maven-publish plugin
 publishing {
     repositories {
-        maven { url = "file://${layout.projectDirectory.asFile}/mcmodsrepo" }
+        maven { url = project.layout.projectDirectory.dir('mcmodsrepo').asFile.toURL() }
     }
 
     publications.register('mavenJava', MavenPublication) {

@@ -7,8 +7,8 @@ import net.minecraft.client.main.Main;
 
 @Mixin(Main.class)
 public class ExampleMixin {
-	@Overwrite
-	public static void main(String[] args) {
-		System.out.println("Overwrote main!");
-	}
+    @Overwrite
+    public static void main(String[] args) {
+        System.out.println("Overwrote main!");
+    }
 }
