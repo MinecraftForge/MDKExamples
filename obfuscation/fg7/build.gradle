@@ -38,10 +38,9 @@ renamer.classes(tasks.named('jar', Jar)) {
 }
 
 // If you want to create another task, or customize the name you can specify it as the first argument
-renamer.classes('renameJarToObf', tasks.named('jar', Jar)) {
-    // This specifies the map via a dependency coordinate, such as 'net.minecraft:mappings_official:1.20.1-20230612.114412:map2obfs@tsrg.gz'
-    mappings(minecraft.dependency.toObf.get())
-    archiveClassifier = 'obf'
+renamer.classes('renameJarToSrg', tasks.named('jar', Jar)) {
+    // This specifies the map via a dependency coordinate, such as 'net.minecraft:mappings_official:1.20.1-20230612.114412:map2srg@tsrg.gz'
+    mappings(minecraft.dependency.toSrg.get())
 }
 
 publishing {
