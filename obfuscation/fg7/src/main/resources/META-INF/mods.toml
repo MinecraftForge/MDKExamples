@@ -1,0 +1,9 @@
+modLoader="javafml"
+loaderVersion="*"
+license="Example"
+
+[[mods]]
+modId="test"
+version="0.0"
+displayName="FG7 Obfuscation Example"
+description="Demonstrates how to build an obfuscated Forge mod jar for versions that don't have runtime MojMap (1.20.4 and older)"
