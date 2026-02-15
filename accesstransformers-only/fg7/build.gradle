@@ -21,6 +21,11 @@ minecraft {
      * who are using the most default case.
      */
     accessTransformer = true
+    /* If you wish to support multiple access transformer files, 
+     * or use the non-standard path, you can specify them directly like this.
+     * Note: Forge 1.20.11-61.0.10+ required for multiple/configurable files.
+     */
+    //accessTransformers = files('src/main/resources/META-INF/accesstransformer.cfg')
 
     mappings channel: 'official', version: '1.21.11'
     runs {
@@ -47,11 +52,4 @@ dependencies {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
-}
-
-tasks.named('jar', Jar) {
-    manifest {
-        // Add our config to the manifest of our jar to have Mixin detect us at runtime.
-        attributes['MixinConfigs'] = "${mod_id}.mixins.json"
-    }
 }
