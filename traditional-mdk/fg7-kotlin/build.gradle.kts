@@ -154,11 +154,11 @@ tasks.withType<JavaCompile>().configureEach {
 // See https://docs.gradle.org/current/dsl/org.gradle.language.jvm.tasks.ProcessResources.html
 tasks.named<ProcessResources>("processResources") {
     var replaceProperties = mapOf(
-        minecraft_version to minecraft_version, minecraft_version_range to minecraft_version_range,
-        forge_version to forge_version, forge_version_range to forge_version_range,
-        loader_version_range to loader_version_range,
-        mod_id to mod_id, mod_name to mod_name, mod_license to mod_license, mod_version to mod_version,
-        mod_authors to mod_authors, mod_description to mod_description
+        "minecraft_version" to minecraft_version, "minecraft_version_range" to minecraft_version_range,
+        "forge_version" to forge_version, "forge_version_range" to forge_version_range,
+        "loader_version_range" to loader_version_range,
+        "mod_id" to mod_id, "mod_name" to mod_name, "mod_license" to mod_license, "mod_version" to mod_version,
+        "mod_authors" to mod_authors, "mod_description" to mod_description
     )
     inputs.property("replaceProperties", replaceProperties)
 
@@ -187,7 +187,7 @@ tasks.named<Jar>("jar") {
 // Example configuration to allow publishing using the maven-publish plugin
 publishing {
     repositories {
-        maven { url = uri("file://${layout.projectDirectory.asFile}/mcmodsrepo") }
+        maven { url = uri(project.layout.projectDirectory.dir("mcmodsrepo").asFile.toString()) }
     }
 
     publications.register<MavenPublication>("mavenJava") {
