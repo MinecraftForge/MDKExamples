@@ -6,7 +6,7 @@ plugins {
     id("idea")
     id("eclipse")
     id("maven-publish")
-    id("net.minecraftforge.gradle") version "[7.0.2,8.0)"
+    id("net.minecraftforge.gradle") version "[7.0.7,8.0)"
     id("net.minecraftforge.jarjar") version "0.2.3"
 }
 
@@ -125,7 +125,7 @@ dependencies {
     // Forge 1.21.6+ uses EventBus 7, which shifts most of its runtime validation to compile-time via an annotation processor
     // to improve performance in production environments. This line is required to enable said compile-time validation
     // in your development environment, helping you catch issues early.
-    annotationProcessor("net.minecraftforge:eventbus-validator:7.0-beta.10")
+    annotationProcessor("net.minecraftforge:eventbus-validator:7.0.1")
 
     // Example mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
