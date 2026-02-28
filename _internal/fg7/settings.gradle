@@ -3,9 +3,10 @@ pluginManagement {
     // This is done to make debugging those projects easier.
     def root = new File("${settingsDir}/../../../").canonicalFile
     gradle.ext.pluginVersions = [
-        [version: '7.0.0-rc.5', id: 'net.minecraftforge.gradle', paths: ['ForgeGradle', 'ForgeGradle7']],
-        [version: '5.0.3', id: 'net.minecraftforge.accesstransformers', paths: ['AccessTransformers/at-gradle']],
-        [version: '0.2.3', id: 'net.minecraftforge.jarjar', paths: ['JarJar/jarjar-gradle']],
+        [version: '[7.0.9,8.0)', id: 'net.minecraftforge.gradle'],
+        [version: '5.0.3', id: 'net.minecraftforge.accesstransformers'],
+        [version: '0.2.3', id: 'net.minecraftforge.jarjar'],
+        [version: '1.0.2', id: 'net.minecraftforge.renamer'],
     ]
     
     gradle.ext.pluginVersions.each { candidate ->
@@ -40,9 +41,9 @@ def children = [
     [name: 'accesstransformers-only', path: 'accesstransformers-only/fg7'],
     [name: 'jarjar-only', path: 'jarjar-only/fg7'],
     [name: 'traditional-mdk', path: 'traditional-mdk/fg7'],
-    // TODO [MDKExamples] Add tests for Kotlin examples
-    //[name: 'traditional-mdk', path: 'traditional-mdk/fg7-kotlin'],
+    [name: 'traditional-mdk', path: 'traditional-mdk/fg7-kotlin'],
     [name: 'mixins-only', path: 'mixins-only/fg7'],
+    [name: 'obfuscation', path: 'obfuscation/fg7']
 ]
 
 for (def child : children) {

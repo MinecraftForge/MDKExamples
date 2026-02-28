@@ -3,7 +3,7 @@ plugins {
     id 'idea'
     id 'eclipse'
     id 'maven-publish'
-    id 'net.minecraftforge.gradle' version '[7.0.2,8.0)'
+    id 'net.minecraftforge.gradle' version '[7.0.9,8.0)'
 }
 
 version = '1.0'
@@ -47,7 +47,7 @@ dependencies {
     // This will automatically have the transformer applied because we used minecraft.accessTransformers
     implementation minecraft.dependency("net.minecraftforge:forge:$minecraft_version-$forge_version")
 
-    annotationProcessor 'net.minecraftforge:eventbus-validator:7.0-beta.10'
+    annotationProcessor 'net.minecraftforge:eventbus-validator:7.0.1'
 }
 
 tasks.withType(JavaCompile).configureEach {
