@@ -39,11 +39,15 @@ rootProject.name = 'mdkexamples'
 
 def children = [
     [name: 'accesstransformers-only', path: 'accesstransformers-only/fg7'],
+    [name: 'accesstransformers-only-kotlin', path: 'accesstransformers-only/fg7-kotlin'],
     [name: 'jarjar-only', path: 'jarjar-only/fg7'],
+    //[name: 'jarjar-only', path: 'jarjar-only/fg7-kotlin'],
     [name: 'traditional-mdk', path: 'traditional-mdk/fg7'],
     [name: 'traditional-mdk-kotlin', path: 'traditional-mdk/fg7-kotlin'],
     [name: 'mixins-only', path: 'mixins-only/fg7'],
-    [name: 'obfuscation', path: 'obfuscation/fg7']
+    [name: 'mixins-only-kotlin', path: 'mixins-only/fg7-kotlin'],
+    [name: 'obfuscation', path: 'obfuscation/fg7'],
+    [name: 'obfuscation-kotlin', path: 'obfuscation/fg7-kotlin']
 ]
 
 for (def child : children) {

@@ -18,7 +18,7 @@ minecraft {
 }
 
 repositories {
-    maven minecraft.mavenizer
+    minecraft.mavenizer(it)
     maven fg.forgeMaven
     maven fg.minecraftLibsMaven
 }
