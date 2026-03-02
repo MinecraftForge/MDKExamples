@@ -20,7 +20,9 @@ build
 # other
 eclipse
 run
+runs
 
 /**/mcmodsrepo/
 /obfuscation/fg7/repo/
-/_internal/fg7/test-repo/
+/obfuscation/fg7-kotlin/repo/
+/_internal/test-repo/
