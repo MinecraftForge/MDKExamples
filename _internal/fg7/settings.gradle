@@ -1,12 +1,12 @@
 pluginManagement {
     // This includes various Forge projects if their repo exists relative to the 'MDKExamples' repo root.
     // This is done to make debugging those projects easier.
-    def root = new File("${settingsDir}/../../").canonicalFile
+    def root = new File("${settingsDir}/../../../").canonicalFile
     gradle.ext.pluginVersions = [
-        [version: '[7.0.10,8.0)', id: 'net.minecraftforge.gradle'],
-        [version: '5.0.3', id: 'net.minecraftforge.accesstransformers'],
-        [version: '0.2.3', id: 'net.minecraftforge.jarjar'],
-        [version: '1.0.2', id: 'net.minecraftforge.renamer'],
+        [version: '[7.0.11,8.0)', id: 'net.minecraftforge.gradle', paths: ['ForgeGradle', 'ForgeGradle7']],
+        [version: '5.0.3', id: 'net.minecraftforge.accesstransformers', paths: ['AccessTransformers/at-gradle']],
+        [version: '0.2.3', id: 'net.minecraftforge.jarjar', paths: ['JarJar/jarjar-gradle']],
+        [version: '1.0.2', id: 'net.minecraftforge.renamer', paths: ['renamer/renamer-gradle']],
     ]
     
     gradle.ext.pluginVersions.each { candidate ->
@@ -52,6 +52,6 @@ def children = [
 
 for (def child : children) {
     include(child.name)
-    project(":${child.name}").projectDir = file("../${child.path}")
+    project(":${child.name}").projectDir = file("../../${child.path}")
 }
   
