@@ -1,0 +1,62 @@
+// TODO [MDKExamples] This Kotlin buildscript is still very experimental. I am very new to Kotlin
+//      I welcome suggestions with open arms.
+
+plugins {
+    id("java")
+    id("idea")
+    id("eclipse")
+    id("maven-publish")
+    id("net.minecraftforge.gradle") version "[7.0.11,8.0)"
+}
+
+val minecraft_version: String by project
+val forge_version: String by project
+val mod_id: String by project
+
+version = "1.0"
+group = "net.minecraftforge"
+base.archivesName = mod_id
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+minecraft {
+    /*
+     * This is a magic helper flag, it will enable access transformers on any
+     * minecraft dependencies and look in all sourcesets for a file with
+     * the path: META-INF/accesstransformer.cfg
+     * It also enables some error messages when the file can not be found, to help users
+     * who are using the most default case.
+     */
+    useDefaultAccessTransformer()
+    /* If you wish to support multiple access transformer files, 
+     * or use the non-standard path, you can specify them directly like this.
+     * Note: Forge 1.20.11-61.0.10+ required for multiple/configurable files.
+     */
+    //accessTransformers = files("src/main/resources/META-INF/accesstransformer.cfg")
+
+    mappings("official", "1.21.11")
+    runs {
+        configureEach {
+            workingDir.convention(layout.projectDirectory.dir("run"))
+        }
+        register("client")
+    }
+}
+
+repositories {
+    minecraft.mavenizer(this)
+    maven (fg.forgeMaven)
+    maven (fg.minecraftLibsMaven)
+    mavenCentral()
+}
+
+dependencies {
+    // This will automatically have the transformer applied because we used minecraft.accessTransformers
+    implementation (minecraft.dependency("net.minecraftforge:forge:$minecraft_version-$forge_version"))
+
+    annotationProcessor ("net.minecraftforge:eventbus-validator:7.0.1")
+}
+
+tasks.withType<JavaCompile>().configureEach {
+    options.encoding = "UTF-8" // Use the UTF-8 charset for Java compilation
+}

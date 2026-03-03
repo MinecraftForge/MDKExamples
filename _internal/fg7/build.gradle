@@ -11,16 +11,20 @@ tasks.named('buildEnvironment') {
 
 tasks.register('updateBuilds') {
     subprojects.each { sub ->
-        def lines = sub.file('build.gradle').readLines()
+        def file = sub.file('build.gradle')
+        if (!file.exists()) file = sub.file('build.gradle.kts')
+        def lines = file.readLines()
         lines = lines.collect { line ->
             for (def plugin : gradle.ext.pluginVersions) {
                 // Yes this is hacky string match, but we just need to keep the structure sane
                 if (line.contains("    id '${plugin.id}' version '"))
                     return "    id '${plugin.id}' version '${plugin.version}'"
+                if (line.contains("    id(\"${plugin.id}\") version \""))
+                    return "    id(\"${plugin.id}\") version \"${plugin.version}\""
                 return line
             }
         }
-        sub.file('build.gradle').text = lines.join('\n') + '\n' // New line at the end
+        file.text = lines.join('\n') + '\n' // New line at the end
     }
 }
 
