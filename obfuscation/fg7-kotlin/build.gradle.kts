@@ -55,7 +55,7 @@ publishing {
     }
 
     publications.register<MavenPublication>("mavenJava") {
-        from(components.named("java").get()) // Publish the normal jar
-        artifact(tasks.named("renameJar").get()) // Publish the renamed jar in addition
+        from(components["java"]) // Publish the normal jar
+        artifact(tasks["renameJar"]) // Publish the renamed jar in addition
     }
 }
