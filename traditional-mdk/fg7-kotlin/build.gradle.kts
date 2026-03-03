@@ -83,7 +83,7 @@ sourceSets.named("main") {
 
 // This methods registers jarJar for the default jar task.
 // The closure allows you to configure the task, instead of needing to do this:
-// tasks.named("jarJar", net.minecraftforge.jarjar.gradle.JarJar)
+// tasks.named<net.minecraftforge.jarjar.gradle.JarJar>("jarJar")
 jarJar.register() {
     archiveClassifier = null
 }
@@ -191,11 +191,8 @@ publishing {
     }
 
     publications.register<MavenPublication>("mavenJava") {
-        // the java component publishes the jar output as the primary artifact
-        //from(components["java"])
-
-        // the jarJar component publishes the jarJar output as the primary artifact
-        from(components["jarJar"])
+        artifact(tasks.jar)
+        artifact(tasks["jarJar"])
     }
 }
 

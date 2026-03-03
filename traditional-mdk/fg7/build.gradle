@@ -170,11 +170,8 @@ publishing {
     }
 
     publications.register('mavenJava', MavenPublication) {
-        // the java component publishes the jar output as the primary artifact
-        //from components.java
-
-        // the jarJar component publishes the jarJar output as the primary artifact
-        from components.jarJar
+        artifact tasks.named("jar")
+        artifact tasks.named("jarJar")
     }
 }
 
