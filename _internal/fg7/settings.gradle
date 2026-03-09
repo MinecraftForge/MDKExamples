@@ -6,7 +6,7 @@ pluginManagement {
         [version: '[7.0.11,8.0)', id: 'net.minecraftforge.gradle', paths: ['ForgeGradle', 'ForgeGradle7']],
         [version: '5.0.3', id: 'net.minecraftforge.accesstransformers', paths: ['AccessTransformers/at-gradle']],
         [version: '0.2.3', id: 'net.minecraftforge.jarjar', paths: ['JarJar/jarjar-gradle']],
-        [version: '1.0.2', id: 'net.minecraftforge.renamer', paths: ['renamer/renamer-gradle']],
+        [version: '1.0.6', id: 'net.minecraftforge.renamer', paths: ['renamer/renamer-gradle']],
     ]
     
     gradle.ext.pluginVersions.each { candidate ->
@@ -46,6 +46,7 @@ def children = [
     [name: 'traditional-mdk-kotlin', path: 'traditional-mdk/fg7-kotlin'],
     [name: 'mixins-only', path: 'mixins-only/fg7'],
     [name: 'mixins-only-kotlin', path: 'mixins-only/fg7-kotlin'],
+    [name: 'mixins-obfuscation', path: 'mixins-obfuscation/fg7'],
     [name: 'obfuscation', path: 'obfuscation/fg7'],
     [name: 'obfuscation-kotlin', path: 'obfuscation/fg7-kotlin']
 ]
