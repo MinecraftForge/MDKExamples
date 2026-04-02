@@ -7,7 +7,7 @@ plugins {
     id("eclipse")
     id("maven-publish")
     id("net.minecraftforge.gradle") version "[7.0.11,8.0)"
-    id("net.minecraftforge.renamer") version "1.0.2"
+    id("net.minecraftforge.renamer") version "1.0.14"
 }
 
 val minecraft_version: String by project
