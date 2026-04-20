@@ -3,10 +3,10 @@ pluginManagement {
     // This is done to make debugging those projects easier.
     def root = new File("${settingsDir}/../../../").canonicalFile
     gradle.ext.pluginVersions = [
-        [version: '[7.0.11,8.0)', id: 'net.minecraftforge.gradle', paths: ['ForgeGradle', 'ForgeGradle7']],
+        [version: '[7.0.23,8.0)', id: 'net.minecraftforge.gradle', paths: ['ForgeGradle', 'ForgeGradle7']],
         [version: '5.0.3', id: 'net.minecraftforge.accesstransformers', paths: ['AccessTransformers/at-gradle']],
         [version: '0.2.3', id: 'net.minecraftforge.jarjar', paths: ['JarJar/jarjar-gradle']],
-        [version: '1.0.6', id: 'net.minecraftforge.renamer', paths: ['renamer/renamer-gradle']],
+        [version: '1.0.17', id: 'net.minecraftforge.renamer', paths: ['renamer/renamer-gradle']],
     ]
     
     gradle.ext.pluginVersions.each { candidate ->
