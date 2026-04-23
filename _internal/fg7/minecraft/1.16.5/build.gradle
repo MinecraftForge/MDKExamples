@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+    id 'net.minecraftforge.gradle' version "${gradle_version}"
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+
+minecraft {
+    mappings channel: 'official', version: minecraft_version
+    runs {
+        register('server') {
+            args '--nogui', '--port', 25565 + 1165
+            workingDir = file('runs/main/server/')
+            jvmArgs('-Dfml.queryResult=confirm')
+        }
+    }
+}
+
+apply from: file('../shared.gradle')
+
+dependencies {
+    implementation minecraft.dependency("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
+}

@@ -1,0 +1,32 @@
+repositories {
+    minecraft.mavenizer(it)
+    //mavenLocal() // if we're testing things
+    maven fg.forgeMaven
+    maven fg.minecraftLibsMaven
+}
+
+// Force sign the eula
+var eula = file('runs/main/server/eula.txt')
+if (!eula.parentFile.exists()) eula.parentFile.mkdirs()
+eula.text = 'eula=true'
+var marker = file('runs/main/server/test_marker.txt')
+var log = file('runServer.log')
+
+// Delete the marker so we can see if it ran
+marker.delete()
+tasks.register('testRun') {
+    dependsOn('runServer')
+    doLast {
+        if (!marker.exists())
+            throw new IllegalStateException("Could not find marker file, check logs " + log);
+    }
+}
+
+// Make the console quiet, we can still read the log
+afterEvaluate {
+    tasks.named('runServer', JavaExec) {
+        doFirst {
+            standardOutput = errorOutput = new FileOutputStream(log)
+        }
+    }
+}

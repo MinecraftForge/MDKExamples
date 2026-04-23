@@ -26,3 +26,4 @@ runs
 /obfuscation/fg7/repo/
 /obfuscation/fg7-kotlin/repo/
 /_internal/test-repo/
+**/runServer.log
