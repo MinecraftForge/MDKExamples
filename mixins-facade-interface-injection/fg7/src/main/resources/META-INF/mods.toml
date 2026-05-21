@@ -1,0 +1,8 @@
+modLoader="javafml"
+loaderVersion="*"
+license="license"
+
+[[mods]] #mandatory
+modId="examplemod"
+version="0"
+displayName="example"
