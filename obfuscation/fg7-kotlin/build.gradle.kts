@@ -1,17 +1,14 @@
-// TODO [MDKExamples] This Kotlin buildscript is still very experimental. I am very new to Kotlin
-//      I welcome suggestions with open arms.
-
 plugins {
     id("java")
     id("idea")
     id("eclipse")
     id("maven-publish")
-    id("net.minecraftforge.gradle") version "[7.0.23,8.0)"
-    id("net.minecraftforge.renamer") version "1.0.14"
+    id("net.minecraftforge.gradle") version "[7.0.29,8.0)"
+    id("net.minecraftforge.renamer") version "1.1.2"
 }
 
-val minecraft_version: String by project
-val forge_version: String by project
+val minecraft_version: String = providers.gradleProperty("minecraft_version").get()
+val forge_version: String = providers.gradleProperty("forge_version").get()
 
 version = "1.0"
 group = "net.minecraftforge"
@@ -21,6 +18,13 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
     mappings("official", "1.20.1")
+
+    runs {
+        configureEach {
+            workingDir.convention(layout.projectDirectory.dir("run"))
+        }
+        register("client")
+    }
 }
 
 repositories {
@@ -30,7 +34,7 @@ repositories {
 }
 
 dependencies {
-    implementation(minecraft.dependency("net.minecraftforge:forge:1.20.1-47.4.0"))
+    implementation(minecraft.dependency("net.minecraftforge:forge:${minecraft_version}-${forge_version}"))
 }
 
 // Creates a task named 'renameJar'

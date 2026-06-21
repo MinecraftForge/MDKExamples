@@ -3,18 +3,25 @@ plugins {
     id 'idea'
     id 'eclipse'
     id 'maven-publish'
-    id 'net.minecraftforge.gradle' version '[7.0.23,8.0)'
-    id 'net.minecraftforge.renamer' version '1.0.17'
+    id 'net.minecraftforge.gradle' version '[7.0.29,8.0)'
+    id 'net.minecraftforge.renamer' version '1.1.2'
 }
 
-version = '0.0'
+version = '1.0'
 group = 'com.example'
 base.archivesName = 'obfuscation'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
-    mappings channel: 'official', version: '1.20.1'
+    mappings channel: 'official', version: minecraft_version
+
+    runs {
+        configureEach {
+            workingDir.convention layout.projectDirectory.dir('run')
+        }
+        register('client')
+    }
 }
 
 repositories {
@@ -27,7 +34,7 @@ repositories {
 
 dependencies {
     // Minecraft/Forge itself
-    implementation minecraft.dependency('net.minecraftforge:forge:1.20.1-47.4.0')
+    implementation minecraft.dependency("net.minecraftforge:forge:$minecraft_version-$forge_version")
     // A 3rd party mod, which needs to be deobfuscated from SRG names to the mappings we're using
     implementation renamer.dependency('mezz.jei:jei-1.20.1-forge:15.20.0.129')
 }

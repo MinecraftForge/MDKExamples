@@ -1,9 +1,9 @@
 {
   "pack": {
-    "description": "resources",
-    "max_format": 94,
+    "description": "Mod resources",
+    "max_format": 107,
     "min_format": [
-      94,
+      107,
       1
     ]
   }

@@ -3,14 +3,14 @@ plugins {
     id 'idea'
     id 'eclipse'
     id 'maven-publish'
-    id 'net.minecraftforge.gradle' version '[7.0.25,8.0)'
+    id 'net.minecraftforge.gradle' version '[7.0.29,8.0)'
 }
 
 version = '1.0'
 group = 'net.minecraftforge'
 base.archivesName = mod_id
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java.toolchain.languageVersion = JavaLanguageVersion.of(25)
 
 minecraft {
     // Tell FG7 Facade where to find the config file which specifies which classes to inject interfaces onto, and which

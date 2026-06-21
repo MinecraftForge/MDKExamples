@@ -1,6 +1,3 @@
-// TODO [MDKExamples] This Kotlin buildscript is still very experimental. I am very new to Kotlin
-//      I welcome suggestions with open arms.
-
 import net.minecraftforge.jarjar.gradle.JarJarDependencyMethods
 
 plugins {
@@ -8,22 +5,21 @@ plugins {
     id("idea")
     id("eclipse")
     id("maven-publish")
-    id("net.minecraftforge.gradle") version "[7.0.23,8.0)"
+    id("net.minecraftforge.gradle") version "[7.0.29,8.0)"
     id("net.minecraftforge.jarjar") version "0.2.3"
 }
 
-val minecraft_version: String by project
-val forge_version: String by project
-val mod_id: String by project
+val minecraft_version: String = providers.gradleProperty("minecraft_version").get()
+val forge_version: String = providers.gradleProperty("forge_version").get()
+val mod_id: String = providers.gradleProperty("mod_id").get()
 
 version = "1.0"
 group = "net.minecraftforge"
 base.archivesName = mod_id
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java.toolchain.languageVersion = JavaLanguageVersion.of(25)
 
 minecraft {
-    mappings("official", "1.21.11")
     runs.register("client")
 }
 

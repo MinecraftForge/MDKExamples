@@ -3,7 +3,7 @@ plugins {
     id 'idea'
     id 'eclipse'
     id 'maven-publish'
-    id 'net.minecraftforge.gradle' version '[7.0.23,8.0)'
+    id 'net.minecraftforge.gradle' version '[7.0.29,8.0)'
     id 'net.minecraftforge.jarjar' version '0.2.3'
 }
 
@@ -11,7 +11,7 @@ version = mod_version
 group = mod_group_id
 base.archivesName = mod_id
 
-// Mojang ships Java 21 to end users in 1.20.5+, so your mod should target Java 21.
+// Mojang ships Java 21 to end users in 1.20.5 - 1.21.11, so your mod should target Java 21.
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
 println "Java: ${providers.systemProperty('java.version').get()}, " +
@@ -104,7 +104,7 @@ dependencies {
     // Forge 1.21.6+ uses EventBus 7, which shifts most of its runtime validation to compile-time via an annotation processor
     // to improve performance in production environments. This line is required to enable said compile-time validation
     // in your development environment, helping you catch issues early.
-    annotationProcessor 'net.minecraftforge:eventbus-validator:7.0.1'
+    annotationProcessor 'net.minecraftforge:eventbus-validator:7.0.5'
 
     // Example mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime

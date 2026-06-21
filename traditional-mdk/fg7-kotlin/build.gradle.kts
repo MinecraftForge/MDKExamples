@@ -1,36 +1,33 @@
-// TODO [MDKExamples] This Kotlin buildscript is still very experimental. I am very new to Kotlin
-//      I welcome suggestions with open arms.
-
 plugins {
     id("java")
     id("idea")
     id("eclipse")
     id("maven-publish")
-    id("net.minecraftforge.gradle") version "[7.0.23,8.0)"
+    id("net.minecraftforge.gradle") version "[7.0.29,8.0)"
     id("net.minecraftforge.jarjar") version "0.2.3"
 }
 
-val minecraft_version: String by project
-val minecraft_version_range: String by project
-val forge_version: String by project
-val forge_version_range: String by project
-val loader_version_range: String by project
-val mapping_channel: String by project
-val mapping_version: String by project
+val minecraft_version: String = providers.gradleProperty("minecraft_version").get()
+val minecraft_version_range: String = providers.gradleProperty("minecraft_version_range").get()
+val forge_version: String = providers.gradleProperty("forge_version").get()
+val forge_version_range: String = providers.gradleProperty("forge_version_range").get()
+val loader_version_range: String = providers.gradleProperty("loader_version_range").get()
+val mapping_channel: String = providers.gradleProperty("mapping_channel").get()
+val mapping_version: String = providers.gradleProperty("mapping_version").get()
 
-val mod_id: String by project
-val mod_name: String by project
-val mod_license: String by project
-val mod_version: String by project
-val mod_group_id: String by project
-val mod_authors: String by project
-val mod_description: String by project
+val mod_id: String = providers.gradleProperty("mod_id").get()
+val mod_name: String = providers.gradleProperty("mod_name").get()
+val mod_license: String = providers.gradleProperty("mod_license").get()
+val mod_version: String = providers.gradleProperty("mod_version").get()
+val mod_group_id: String = providers.gradleProperty("mod_group_id").get()
+val mod_authors: String = providers.gradleProperty("mod_authors").get()
+val mod_description: String = providers.gradleProperty("mod_description").get()
 
 version = mod_version
 group = mod_group_id
 base.archivesName = mod_id
 
-// Mojang ships Java 21 to end users in 1.20.5+, so your mod should target Java 21.
+// Mojang ships Java 21 to end users in 1.20.5 - 1.21.11, so your mod should target Java 21.
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
 println("Java: ${providers.systemProperty("java.version").get()}, " +
@@ -125,7 +122,7 @@ dependencies {
     // Forge 1.21.6+ uses EventBus 7, which shifts most of its runtime validation to compile-time via an annotation processor
     // to improve performance in production environments. This line is required to enable said compile-time validation
     // in your development environment, helping you catch issues early.
-    annotationProcessor("net.minecraftforge:eventbus-validator:7.0.1")
+    annotationProcessor("net.minecraftforge:eventbus-validator:7.0.5")
 
     // Example mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime

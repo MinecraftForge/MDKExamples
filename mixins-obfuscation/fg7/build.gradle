@@ -3,7 +3,7 @@ plugins {
     id 'idea'
     id 'eclipse'
     id 'maven-publish'
-    id 'net.minecraftforge.gradle' version '[7.0.23,8.0)'
+    id 'net.minecraftforge.gradle' version '[7.0.29,8.0)'
     id 'net.minecraftforge.renamer' version '1.0.14'
 }
 
@@ -11,7 +11,7 @@ version = '1.0'
 group = 'net.minecraftforge'
 base.archivesName = mod_id
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 renamer.enableMixinRefmaps {
     config "${mod_id}.mixins.json"
@@ -23,7 +23,6 @@ renamer.classes(tasks.named('jar', Jar)) {
 }
 
 minecraft {
-    mappings channel: 'official', version: '1.21.11'
     runs {
         configureEach {
             workingDir.convention layout.projectDirectory.dir('run')
@@ -48,5 +47,5 @@ dependencies {
 renamer.mappings(minecraft.dependency.toSrg)
 
 tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+    options.encoding = 'UTF-8'
 }
