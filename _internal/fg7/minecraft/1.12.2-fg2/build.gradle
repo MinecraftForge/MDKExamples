@@ -12,7 +12,7 @@ minecraft {
             workingDir = file('runs/main/client/')
         }
         register('server') {
-            args '--nogui', 'fml_bug', '--port', 25565 + 1122
+            args '--nogui', 'fml_bug', '--port', 25565 + 1122 + 1 // we have 2 1.12.2 versions, FG2/3
             workingDir = file('runs/main/server/')
         }
     }

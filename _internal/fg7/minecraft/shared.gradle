@@ -1,8 +1,18 @@
 repositories {
     minecraft.mavenizer(it)
-    //mavenLocal() // if we're testing things
+    mavenLocal() // if we're testing things
     maven fg.forgeMaven
     maven fg.minecraftLibsMaven
+}
+
+// This is only needed if we are testing local builds
+fgtools {
+    configure('slimelauncher') {
+        //version = '0.2.1'
+    }
+    configure('mavenizer') {
+        //version = '0.5.10'
+    }
 }
 
 // Force sign the eula
@@ -11,6 +21,8 @@ if (!eula.parentFile.exists()) eula.parentFile.mkdirs()
 eula.text = 'eula=true'
 var marker = file('runs/main/server/test_marker.txt')
 var log = file('runServer.log')
+// Delete the world if it exists
+project.delete(file('runs/main/server/world'))
 
 // Delete the marker so we can see if it ran
 marker.delete()

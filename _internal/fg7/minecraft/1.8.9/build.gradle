@@ -6,13 +6,13 @@ plugins {
 java.toolchain.languageVersion = JavaLanguageVersion.of(8)
 
 minecraft {
-    mappings channel: 'snapshot', version: mapping_version
+    mappings channel: 'stable', version: mapping_version
     runs {
         register('client') {
             workingDir = file('runs/main/client/')
         }
         register('server') {
-            args '--nogui', 'fml_bug', '--port', 25565 + 1122
+            args '--nogui', 'fml_bug', '--port', 25565 + 189
             workingDir = file('runs/main/server/')
         }
     }
