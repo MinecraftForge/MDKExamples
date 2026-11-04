@@ -15,6 +15,13 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 renamer.enableMixinRefmaps {
     config "${mod_id}.mixins.json"
+
+    // Set the default refmap name
+    // This will be used for the 'main' sourceset
+    // Other sourcesets will have their names added after the first .
+    refMap = 'modid.refmap.json'
+    // You can also use {source} to explicitly place the sourceset name
+    //refMap = 'modid.{source}.refmap.json'
 }
 renamer.classes(tasks.named('jar', Jar)) {
     archiveClassifier = 'srg'

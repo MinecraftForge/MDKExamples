@@ -1,5 +1,6 @@
 {
 	"package": "net.minecraftforge.example.mixins",
+	"refmap":"modid.refmap.json",
 	"mixins": [
 		"ExampleMixin"
 	]
