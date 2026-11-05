@@ -20,6 +20,7 @@ for legacy Minecraft versions (1.20.4 and older). Should *not* be done on newer 
 at compile-time alongside Mixin to handle runtime.
 - [Mixins w/ obfuscation]: demonstrates how to configure Forge's Renamer plugin to get Mixin working on obfuscated versions.
 - [Traditional MDK]: the "fat" MDK from the ForgeGradle 6- era, mainly intended as a reference to help migrate from FG6 to FG7.
+- [Non Minecraft Dependency]: Demonstrates how to add a non-minecraft related dependency to the dev time classpath
 
 [AccessTransformers-only]: https://github.com/MinecraftForge/MDKExamples/tree/master/accesstransformers-only
 [JarJar-only]: https://github.com/MinecraftForge/MDKExamples/tree/master/jarjar-only
@@ -28,6 +29,7 @@ at compile-time alongside Mixin to handle runtime.
 [Mixins w/ Facade interface injection]: https://github.com/MinecraftForge/MDKExamples/tree/master/mixins-facade-interface-injection
 [Mixins w/ obfuscation]: https://github.com/MinecraftForge/MDKExamples/tree/master/mixins-obfuscation
 [Traditional MDK]: https://github.com/MinecraftForge/MDKExamples/tree/master/traditional-mdk
+[Non Minecraft Dependency]: https://github.com/MinecraftForge/MDKExamples/tree/master/non-minecraft-dependency
 
 [GradleUp Shadow]: https://plugins.gradle.org/plugin/com.gradleup.shadow
 [Renamer]: https://github.com/MinecraftForge/Renamer

@@ -1,0 +1,60 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'eclipse'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '[7.0.29,8.0)'
+    id 'net.minecraftforge.jarjar' version '0.2.3'
+}
+
+version = '1.0'
+group = 'net.minecraftforge'
+base.archivesName = mod_id
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(25)
+
+minecraft {
+    runs.register('client')
+}
+
+repositories {
+    minecraft.mavenizer(it)
+    maven fg.forgeMaven
+    maven fg.minecraftLibsMaven
+    mavenCentral()
+}
+
+// Creates the jarJar configuration.
+// This creates the 'jarJar' task, which by default has a classifier of 'all', with a base of the 'jar' task
+// For more info see https://github.com/MinecraftForge/JarJar/blob/main/jarjar-gradle/src/main/java/net/minecraftforge/jarjar/gradle/JarJarExtension.java
+jarJar.register()
+
+// If you want to have your "normal" jar the 'all' jar, you can change the classifier using normal gradle configuration
+tasks.named('jar') {
+    archiveClassifier = 'slim'
+}
+tasks.named('jarJar') {
+    archiveClassifier = null
+}
+
+configurations {
+    myNonMcConfigurationName // This name can be whatever you want, it's just so we can use it later.
+}
+
+dependencies {
+    // Mark this as a part of the configuration.
+    myNonMcConfigurationName 'org.apache.maven:maven-artifact:3.9.11'
+
+    implementation minecraft.dependency("net.minecraftforge:forge:$minecraft_version-$forge_version")
+
+    // This adds the declared configuration jars to the classpath for dev time. This has no impact on production jars.
+    // Note, this is a workaround as FG7 does not have an equivalent to FG6's minecraftLibrary at the time of writing.
+    // todo update this when this is officially exposed.
+    minecraft.dependency.asProvider().get().__fg_minecraft_dependency.minecraftDependencies.dependencies.addAll(configurations.myNonMcConfigurationName.dependencies)
+
+    // If you are using a non-minecraft related dependency, it is highly likely you will need to JarJar said dependency.
+    // so that production jars will work as expected.
+    implementation 'org.apache.maven:maven-artifact:3.9.11' // Presumably you will also be dev against it.
+    jarJar('org.apache.maven:maven-artifact:3.9.11')
+
+}
