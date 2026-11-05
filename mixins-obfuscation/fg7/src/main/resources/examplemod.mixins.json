@@ -1,5 +1,7 @@
 {
 	"package": "net.minecraftforge.example.mixins",
+	"//":"Replace 'examplemod' with the actual id of your mod",
+	"refmap":"examplemod.refmap.json",
 	"mixins": [
 		"ExampleMixin"
 	]

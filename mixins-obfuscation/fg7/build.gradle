@@ -4,7 +4,7 @@ plugins {
     id 'eclipse'
     id 'maven-publish'
     id 'net.minecraftforge.gradle' version '[7.0.29,8.0)'
-    id 'net.minecraftforge.renamer' version '1.0.14'
+    id 'net.minecraftforge.renamer' version '1.1.8'
 }
 
 version = '1.0'
@@ -15,6 +15,14 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 renamer.enableMixinRefmaps {
     config "${mod_id}.mixins.json"
+
+    // Set the default refmap name
+    // This will be used for the 'main' sourceset
+    // The refmap name should be the same as the one specified inside the mixin config (which can not use ${mod_id} and uses a hardcoded word)
+    // Other sourcesets will have their names added after the first .
+    refMap = "${mod_id}.refmap.json"
+    // You can also use {source} to explicitly place the sourceset name
+    //refMap = "${mod_id}.{source}.refmap.json"
 }
 renamer.classes(tasks.named('jar', Jar)) {
     archiveClassifier = 'srg'
