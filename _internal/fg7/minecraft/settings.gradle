@@ -1,7 +1,7 @@
 pluginManagement {
     repositories {
         gradlePluginPortal()
-        //mavenLocal()
+        mavenLocal()
     }
 }
 
@@ -11,6 +11,13 @@ plugins {
 
 rootProject.name = 'minecraft'
 
+include '1.6.4'      // FG 1.0
+include '1.7.10'     // FG 1.2
+include '1.8.9'      // FG 2.1
+include '1.9.4'      // FG 2.2
+include '1.10.2'     // FG 2.2
+include '1.11.2'     // FG 2.2
+include '1.12.2-fg2' // FG 2.3
 include '1.12.2'
 include '1.13.2'
 include '1.14.4'

@@ -8,6 +8,10 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 minecraft {
     mappings channel: 'official', version: minecraft_version
     runs {
+        register('client') {
+            workingDir = file('runs/main/client/')
+            jvmArgs '--add-opens', 'cpw.mods.bootstraplauncher/cpw.mods.bootstraplauncher=ALL-UNNAMED'
+        }
         register('server') {
             args '--nogui', '--port', 25565 + 1182
             workingDir = file('runs/main/server/')

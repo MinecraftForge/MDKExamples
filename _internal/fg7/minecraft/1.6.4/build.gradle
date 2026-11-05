@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'net.minecraftforge.gradle' version "${gradle_version}"
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+// Forge 1.6.4 ships ASM 4.1 which does not support java 8
+// Either we have to bump the libraries (which is fine) or compile our code for java 6
+tasks.withType(JavaCompile) {
+    options.fork = true
+    options.compilerArgs += ['-source', '1.6', '-target', '1.6']
+}
+
+minecraft {
+    mappings channel: 'snapshot', version: mapping_version
+    runs {
+        register('client') {
+            workingDir = file('runs/main/client/')
+        }
+        register('server') {
+            args '--nogui', 'fml_bug', '--port', 25565 + 164
+            workingDir = file('runs/main/server/')
+        }
+    }
+}
+
+apply from: file('../shared.gradle')
+
+dependencies {
+    implementation minecraft.dependency("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
+    // This is required by old Forge versions because Java 8u20 changed the sorting implementation for Lists
+    // And that causes a ConcurrentModificationException, this **could** be added by Mavenizer but i'm on the fence for doing that.
+    // https://github.com/MinecraftForge/LegacyJavaFixer/blob/master/src/main/java/net/minecraftforge/legacyjavafixer/sort/LegacyJavaSortTweaker.java
+    implementation('net.minecraftforge.lex:legacyjavafixer:1.0')
+    // This will bump ASM to a version that supports java 8, also possible to do in mavenizer, but wanted to verify things work on the users side
+    //implementation('org.ow2.asm:asm-debug-all:5.1')
+}
